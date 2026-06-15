@@ -7,7 +7,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await api.get("/");
+      const res = await api.get("/tasks");
       setTasks(res.data);
     } catch (error) {
       console.log(error);
