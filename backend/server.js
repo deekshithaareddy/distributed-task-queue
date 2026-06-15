@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import connectDB from "./config/db.js";
-
+import "./worker/worker.js";
 import taskRouter from "./routes/taskRoute.js";
 import authRouter from "./routes/authRoute.js";
 
