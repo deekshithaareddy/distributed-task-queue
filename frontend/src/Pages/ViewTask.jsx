@@ -9,7 +9,7 @@ const ViewTasks = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await api.get("/", {
+      const res = await api.get("/tasks", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
