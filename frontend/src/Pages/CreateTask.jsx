@@ -9,7 +9,7 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await api.post("/", {
+    await api.post("/tasks", {
       title,
       type,
     });
