@@ -64,10 +64,6 @@ const ViewTasks = () => {
                   {task.status}
                 </span>
               </p>
-
-              <p>
-                <strong>Attempts:</strong> {task.attempts}
-              </p>
             </div>
           ))}
 
