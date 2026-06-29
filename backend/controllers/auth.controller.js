@@ -3,43 +3,34 @@ import jwt from "jsonwebtoken";
 
 import { userModel } from "../models/userModel.js";
 
-export const register =
-  async (req, res) => {
-    const {
-      name,
-      email,
-      password,
-    } = req.body;
+export const register = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-    const exists =
-      await userModel.findOne({
-        email,
-      });
+    const exists = await userModel.findOne({ email });
 
     if (exists) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "User already exists",
-        });
+      return res.status(400).json({
+        message: "User already exists",
+      });
     }
 
-    const hashed =
-      await bcrypt.hash(
-        password,
-        10
-      );
+    const hashed = await bcrypt.hash(password, 10);
 
-    const user =
-      await userModel.create({
-        name,
-        email,
-        password: hashed,
-      });
+    const user = await userModel.create({
+      name,
+      email,
+      password: hashed,
+    });
 
-    res.json(user);
-  };
+    res.status(201).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
 
 export const login =
   async (req, res) => {
